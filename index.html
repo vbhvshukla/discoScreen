@@ -1,14 +1,29 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeh DJ!!!</title>
+    <style>
+        .fullscreen-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
-<!--     <div>
-        <button id="start">Start</button>
-        <button id="stop">Stop</button>
-    </div> -->
+    <button id="fullscreen-btn" class="fullscreen-btn">🔲</button>
+    <!--     <div>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div> -->
 </body>
 <script>
     //Generate a random color
@@ -20,6 +35,26 @@
         }
         return color;
     }
-    setInterval(()=>{document.body.style.backgroundColor=randomColor()},50)
+    setInterval(()=>{document.body.style.backgroundColor=randomColor()},50);
+
+    // Fullscreen toggle functionality
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // Exit fullscreen on Escape key press
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    });
 </script>
 </html>
