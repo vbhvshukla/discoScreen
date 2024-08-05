@@ -4,40 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeh DJ!!!</title>
-    <style>
-        .fullscreen-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-    </style>
 </head>
 <body>
-    <button id="fullscreen-btn" class="fullscreen-btn">🔲</button>
     <!--     <div>
             <button id="start">Start</button>
             <button id="stop">Stop</button>
         </div> -->
 </body>
 <script>
-    //Generate a random color
+    // Generate a random color
     const randomColor = function(){
         const hex = "0123456789ABCDEF";
         let color = "#";
         for (let i = 0; i < 6; i++) {
-            color+=hex[Math.floor(Math.random()*16)]
+            color += hex[Math.floor(Math.random() * 16)];
         }
         return color;
-    }
-    setInterval(()=>{document.body.style.backgroundColor=randomColor()},50);
+    };
+    setInterval(() => {
+        document.body.style.backgroundColor = randomColor();
+    }, 50);
 
-    // Fullscreen toggle functionality
+    // Toggle fullscreen mode
     const toggleFullscreen = () => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
@@ -47,10 +35,6 @@
             }
         }
     };
-
-    // Button to toggle fullscreen
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
 
     // Keydown event to toggle fullscreen with 'F' and exit with 'Escape'
     document.addEventListener('keydown', (event) => {
