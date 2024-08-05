@@ -38,9 +38,7 @@
     setInterval(()=>{document.body.style.backgroundColor=randomColor()},50);
 
     // Fullscreen toggle functionality
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-    fullscreenBtn.addEventListener('click', () => {
+    const toggleFullscreen = () => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
         } else {
@@ -48,11 +46,17 @@
                 document.exitFullscreen();
             }
         }
-    });
+    };
 
-    // Exit fullscreen on Escape key press
+    // Button to toggle fullscreen
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Keydown event to toggle fullscreen with 'F' and exit with 'Escape'
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && document.fullscreenElement) {
+        if (event.key === 'F' || event.key === 'f') {
+            toggleFullscreen();
+        } else if (event.key === 'Escape' && document.fullscreenElement) {
             document.exitFullscreen();
         }
     });
